@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import home from './images/home.svg'
+import add from './images/add.svg'
+import AddStudent from './components/AddStudent.js'
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      page: 'home'
+    }
+  }
+
+  handleHomeButton = () =>{
+    this.setState({page: 'home'})
+  }
+
+  handleAddButton = () =>{
+    this.setState({page: 'add'})
+  }
+
   render() {
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <div id='menu'>
+        {this.state.page}
+          <img src={home} onClick={this.handleHomeButton} className='app-home' alt='See all students' />
+          <img src={add} onClick={this.handleAddButton} className='app-add' alt='Add student' />
+        </div>
+        <AddStudent activePage={this.state.page} />
         </header>
       </div>
     );
