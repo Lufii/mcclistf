@@ -2,6 +2,25 @@ ul{
 list-style-type: none;
 }
 
+form input[type=submit]{
+margin-bottom: 10px;
+}
+
+form input{
+  text-align: center;
+}
+
+.addStudent {
+  padding: 1px;
+}
+
+.addStudent p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 .App {
   text-align: center;
@@ -21,10 +40,16 @@ list-style-type: none;
 #menu{
   min-width: 400px;
 }
+
 #menu img{
-  width: 200px;
+  margin-top: 30px;
+  width: 150px;
   height:50px;
   display: inline-block;
+}
+
+#menu img:hover{
+cursor: pointer;
 }
 
 .addStudent{

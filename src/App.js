@@ -3,7 +3,6 @@ import './App.css';
 import home from './images/home.svg'
 import add from './images/add.svg'
 import AddStudent from './components/AddStudent.js'
-import StudentCard from './components/StudentCard.js'
 import StudentsList from './components/StudentsList.js'
 const axios = require('axios');
 
@@ -13,22 +12,21 @@ class App extends Component {
     super(props);
     this.state={
       page: 'home',
+      array: []
     }
   }
 
-  receiveStudentsList(){
-    axios({
-      method:'GET',
-      url:'http://localhost:72/students',
-    }).then( (response) => {
-      if(response.status === 200){
-      console.log (response.data);
-      return response.data;
-    }}).catch(function (error){
-      return {name: 'error'}
-    });
-  }
-
+  componentDidMount(){
+    axios
+      .get('http://localhost:72/students')
+      .then(({ data })=> {
+        console.log(data);
+        this.setState(
+          { array: data }
+        );
+      })
+      .catch((err)=> {})
+    }
 
   handleHomeButton = () =>{
     this.setState({page: 'home'})
@@ -44,13 +42,16 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <div id='menu'>
-        {this.state.page}
           <img src={home} onClick={this.handleHomeButton} className='app-home' alt='See all students' />
           <img src={add} onClick={this.handleAddButton} className='app-add' alt='Add student' />
         </div>
         <AddStudent activePage={this.state.page} />
+        <StudentsList activePage={this.state.page} />
 
-//test stuff
+{/* test stuff
+
+  {this.state.page}
+
         <StudentCard name='cyry' lastname='didi' birthdate='caca' hobbies='sss' />
         <StudentsList jsonList={[
         {
@@ -75,8 +76,8 @@ class App extends Component {
         hobbies: "ski"
         }
         ]} />
-//test stuff end
-        <StudentsList jsonList={this.receiveStudentsList} />
+test stuff end */}
+
         </header>
       </div>
     );

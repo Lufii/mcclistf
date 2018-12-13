@@ -1,41 +1,51 @@
 import React, { Component } from 'react';
 import StudentCard from './StudentCard.js';
-
+const axios = require('axios');
 
 class StudentsList extends Component {
 
-/*  constructor(props){
-      super(props);
-      this.state = {
-        jsonres: null
-      };
+  constructor(props){
+    super(props);
+    this.state={
+      jsonres: []
+    }
+  }
+
+  componentDidMount(){
+    axios
+      .get('http://localhost:72/students')
+      .then(({ data })=> {
+        console.log(data);
+        this.setState(
+          { jsonres: data }
+        );
+      })
+      .catch((err)=> {})
     }
 
-    handleJSON(){
-      let res = axios({
-        method:'GET',
-        url:'http://localhost:72/students',
-      }).then(function (response){
-        console.log(response);
-        if(response.status === 200){
-        //self2.sayChange(self.name+' add successful');
-        return response;
-      }}).catch(function (error){
-        console.log(error);
-        //self2.sayChange(self.name+' add unsuccessful.');
-      });
-      this.setState({jsonres: res});
+  componentDidUpdate() {
+      axios
+        .get('http://localhost:72/students')
+        .then(({ data })=> {
+          console.log(data);
+          this.setState(
+            { jsonres: data }
+          );
+        })
+        .catch((err)=> {})
     }
-  */
+  
 
   render() {
+    if (this.props.activePage==='home')
     return (
       <div className="studentsList">
-    {Object.values(this.props.jsonList).map(function(object, i){
+    {this.state.jsonres.map(function(object, i){
       return <StudentCard name={object.name} lastname={object.lastname} birthdate={object.birthdate} hobbies={object.hobbies} key={i}/>
     })}
       </div>
     );
+    else return null;
   }
 }
 
