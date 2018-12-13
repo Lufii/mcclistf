@@ -47,7 +47,7 @@ class App extends Component {
         </div>
         <AddStudent activePage={this.state.page} />
         <StudentsList activePage={this.state.page} />
-
+        <a href='https://fontawesome.com/license' id='fontawesome'>SVG images credit goes to fontawesome</a>
 {/* test stuff
 
   {this.state.page}

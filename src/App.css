@@ -10,6 +10,16 @@ form input{
   text-align: center;
 }
 
+#fontawesome{
+  margin-top:20px;
+  font-size: 15px;
+}
+
+#fontawesome, #fontawesome:link, #fontawesome:visited, #fontawesome:hover, #fontawesome:active{
+  color:white;
+  text-decoration: none;
+}
+
 .addStudent {
   padding: 1px;
 }
